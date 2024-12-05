@@ -1,8 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-} from "react-native"
+import { StyleSheet, View, SafeAreaView } from "react-native"
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,9 +7,14 @@ import LottieView from "lottie-react-native"
 function Loading() {
   return (
     <SafeAreaView style={styles.loadingContainer}>
-        <View style={styles.load}>
-          <LottieView style={{flex:1}} source={require('../assets/loadingAnimation.json')} autoPlay loop />
-        </View>
+      <View style={styles.load}>
+        <LottieView
+          style={{ flex: 1 }}
+          source={require("../assets/loadingAnimation.json")}
+          autoPlay
+          loop
+        />
+      </View>
     </SafeAreaView>
   )
 }
@@ -21,7 +22,7 @@ function Loading() {
 export default Loading
 
 const styles = StyleSheet.create({
-  load:{width:wp(60),aspectRatio:1},
+  load: { width: wp(60), aspectRatio: 1 },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",

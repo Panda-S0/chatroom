@@ -1,11 +1,7 @@
 import { StatusBar } from "expo-status-bar"
-import {
-  onAuthStateChanged,
-} from "firebase/auth"
+import { onAuthStateChanged } from "firebase/auth"
 import { useEffect, useState } from "react"
-import {
-  SafeAreaView,
-} from "react-native"
+import { SafeAreaView } from "react-native"
 import { MenuProvider } from "react-native-popup-menu"
 import { auth, db } from "./firebaseConfig"
 import { doc, getDoc } from "firebase/firestore"
@@ -40,7 +36,6 @@ export default function App() {
       // console.log(JSON.stringify(user, null, 2))
     })
     return authChange
-    
   }, [])
 
   const updateUserData = async (userId) => {
@@ -100,7 +95,8 @@ export default function App() {
                   name="HomePageScreen"
                   component={HomePageScreen}
                   options={() => ({
-                    title:"chats",
+                    animation: "fade_from_bottom", 
+                    title: "chats",
                     headerRight: () => (
                       <RightHeader
                         onPress={sighOut}
@@ -113,6 +109,9 @@ export default function App() {
                 <Stack.Screen
                   name="ChatroomScreen"
                   component={ChatroomScreen}
+                  options={() => ({
+                    animation: "fade_from_bottom", // Slide in from right
+                  })}
                 />
               </Stack.Navigator>
             </SafeAreaView>

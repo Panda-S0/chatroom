@@ -1,0 +1,22 @@
+services:
+  expo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "19000:19000" # DevTools
+      - "19001:19001" # iOS
+      - "19002:19002" # Web
+      - "8081:8081" # Metro Bundler
+
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_NATIVE_PACKAGER_HOSTNAME=192.168.1.101 # Use local machine's IP
+      - EXPO_DEV_SERVER_HOST=192.168.1.101 # Use local machine's IP
+      # hostname -I           # For Linux
+      # ipconfig              # For Win
+    stdin_open: true
+    tty: true

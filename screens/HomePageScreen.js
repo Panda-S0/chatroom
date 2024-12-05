@@ -25,11 +25,24 @@ const getRoomId = (id1, id2) => {
   const roomId = sorted.join("-")
   return roomId
 }
-const formatDate = date=>{
+const formatDate = (date) => {
   var day = date.getDate()
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  var monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ]
   var month = monthNames[date.getMonth()]
-  var formattedDate = day + ' ' + month
+  var formattedDate = day + " " + month
   return formattedDate
 }
 const MessageItem = ({ userId, otherId, name, avatar, onPress }) => {
@@ -53,15 +66,17 @@ const MessageItem = ({ userId, otherId, name, avatar, onPress }) => {
     if (lastMessages) {
       if (userId == lastMessages.userId)
         return "You: " + lastMessages.text
-      else {return lastMessages.text}
+      else {
+        return lastMessages.text
+      }
     } else {
       return "Say hi 👋"
     }
   }
   const renderTime = () => {
-    if(lastMessages){
+    if (lastMessages) {
       let date = lastMessages?.createdAt
-      return formatDate(new Date(date?.seconds *1000))
+      return formatDate(new Date(date?.seconds * 1000))
     }
   }
   return (
@@ -81,7 +96,6 @@ const MessageItem = ({ userId, otherId, name, avatar, onPress }) => {
   )
 }
 
-
 //MAIN FUNCITON
 function HomePageScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -93,6 +107,12 @@ function HomePageScreen({ navigation }) {
       getUsers()
     }
   }, [user])
+
+  useEffect(() => {
+    navigation.setOptions({
+      animation: "fade_from_bottom",
+    })
+  }, [navigation])
 
   // console.log("UID: ",user?.uid)
   // console.log("USERID: ",user?.userId)
@@ -123,9 +143,7 @@ function HomePageScreen({ navigation }) {
   }
 
   if (isLoading) {
-    return (
-        <Loading/>
-    )
+    return <Loading />
   }
   return (
     <FlatList

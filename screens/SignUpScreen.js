@@ -66,6 +66,7 @@ function SignUpScreen() {
         currentUser.profileUrl
       )
       setIsLoading(false)
+      console.log(response)
       if (response.success) {
         // console.log("SIGNED UP")
       } else {

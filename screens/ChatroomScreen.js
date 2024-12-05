@@ -10,6 +10,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native"
+import Animated, {
+  LightSpeedInLeft,
+  LightSpeedInRight,
+} from "react-native-reanimated"
 import colors from "../assets/colors"
 import { Image } from "expo-image"
 import {
@@ -23,6 +27,7 @@ import {
   orderBy,
 } from "firebase/firestore"
 import { db } from "../firebaseConfig"
+import Loading from "../components/Loading.js"
 
 const getRoomId = (id1, id2) => {
   const sorted = [id1, id2].sort()
@@ -31,6 +36,7 @@ const getRoomId = (id1, id2) => {
 }
 
 function ChatroomScreen({ navigation, route }) {
+  const [isLoading, setIsLoading] = useState(false)
   const passedUser = route.params.passedUser
   const currentUser = route.params.currentUser
   let roomId = getRoomId(passedUser?.userId, currentUser?.userId)
@@ -71,10 +77,12 @@ function ChatroomScreen({ navigation, route }) {
   }, [])
 
   const creatRoomIfNotExists = async () => {
+    setIsLoading(true)
     await setDoc(doc(db, "rooms", roomId), {
       roomId,
       createdAt: Timestamp.fromDate(new Date()),
     })
+    setIsLoading(false)
   }
 
   const [messages, setMessages] = useState([])
@@ -87,6 +95,7 @@ function ChatroomScreen({ navigation, route }) {
       const docRef = doc(db, "rooms", roomId)
       const messagesRef = collection(docRef, "messages")
       if (inputRef) inputRef?.current?.clear()
+      setIsLoading(true)
       const newDoc = await addDoc(messagesRef, {
         userId: currentUser.userId,
         text: message,
@@ -94,6 +103,7 @@ function ChatroomScreen({ navigation, route }) {
         senderName: currentUser?.username,
         createdAt: Timestamp.fromDate(new Date()),
       })
+      setIsLoading(false)
       // console.log("new Message: ", newDoc.id)
     } catch (e) {
       // console.log("message: ", e.message)
@@ -109,15 +119,20 @@ function ChatroomScreen({ navigation, route }) {
     const isMyMessage = item.userId === currentUser.userId
     // console.log("Message: ",messages[1].createdAt)
     return (
-      <View
+      <Animated.View
+        entering={isMyMessage ? LightSpeedInRight : LightSpeedInLeft}
         style={[
           styles.messageContainer,
           isMyMessage ? styles.myMessage : styles.otherMessage,
         ]}
       >
         <Text style={styles.messageText}>{item.text}</Text>
-      </View>
+      </Animated.View>
     )
+  }
+
+  if (isLoading) {
+    return <Loading />
   }
 
   return (
