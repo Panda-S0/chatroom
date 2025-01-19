@@ -8,11 +8,8 @@
     src="chatroom.png"
 /> -->
 
-<video height="640" src="chatroomdemo.mp4" autoplay muted controls/>
 
-[Watch the video](./chatroomdemo.mp4)
 
-![Video Demo](./chatroomdemo.mp4)
-
+[Demo Video](https://drive.google.com/file/d/1mZ62cOcvDl56vd297zbyZdGRW0ajoux5/view?usp=sharing)
 
 </div>
