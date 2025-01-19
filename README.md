@@ -9,7 +9,7 @@
 /> -->
 
 <video height="640" autoplay muted controls>
-    <source src="chatroom demo.mp4" type="video/mp4">
+<source src="chatroom demo.mp4" type="video/mp4">
 </video>
 
 </div>
