@@ -3,7 +3,7 @@
 
   <img src="./chatroomdemo.gif" alt="Demo" height="600">
 
-  [link to the video: ](https://drive.google.com/file/d/1mZ62cOcvDl56vd297zbyZdGRW0ajoux5/view?usp=sharing)
+  [watch the demo video](https://drive.google.com/file/d/1mZ62cOcvDl56vd297zbyZdGRW0ajoux5/view?usp=sharing)
 
   
 </div>
