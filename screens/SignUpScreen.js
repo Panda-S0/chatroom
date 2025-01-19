@@ -14,6 +14,7 @@ import { signUp } from "../components/authcontext.js"
 import Loading from "../components/Loading.js"
 
 function SignUpScreen() {
+  // console.log("WE REACHED SIGN UP 👆")
   const [isLoading, setIsLoading] = useState(false)
   const [currentUsername, setCurrentUsername] = useState("")
   const [currentUrl, setCurrentUrl] = useState("")
@@ -66,7 +67,7 @@ function SignUpScreen() {
         currentUser.profileUrl
       )
       setIsLoading(false)
-      console.log(response)
+      // console.log(response)
       if (response.success) {
         // console.log("SIGNED UP")
       } else {

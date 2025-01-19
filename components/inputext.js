@@ -13,6 +13,7 @@ function Inputext({
   keyboardType,
   secureTextEntry,
 }) {
+  // console.log("Inputext")
   return (
     <View style={[styles.viewall, style]}>
       <Text>

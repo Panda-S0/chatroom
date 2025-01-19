@@ -9,6 +9,7 @@ function CoolButton({
   btnStyle,
   Icon,
 }) {
+  // console.log("CoolButton")
   return (
     <Pressable
       onPress={onPress}

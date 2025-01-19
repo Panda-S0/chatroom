@@ -21,6 +21,7 @@ function Inpupass({
   onPress,
   showPassword,
 }) {
+  // console.log("Inputpass")
   return (
     <View
       style={{

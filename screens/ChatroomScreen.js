@@ -36,6 +36,7 @@ const getRoomId = (id1, id2) => {
 }
 
 function ChatroomScreen({ navigation, route }) {
+  // console.log("WE REACHED CHAT ROOM 📱")
   const [isLoading, setIsLoading] = useState(false)
   const passedUser = route.params.passedUser
   const currentUser = route.params.currentUser
@@ -108,8 +109,8 @@ function ChatroomScreen({ navigation, route }) {
     } catch (e) {
       // console.log("message: ", e.message)
     }
-    // setMessages([...messages, newMessage])
-    // setInputText("")
+    setMessages([...messages, newMessage])
+    setInputText("")
 
     // Scroll to the bottom when a new message is added
     flatListRef.current?.scrollToEnd({ animated: true })
@@ -117,7 +118,6 @@ function ChatroomScreen({ navigation, route }) {
 
   const renderItem = ({ item }) => {
     const isMyMessage = item.userId === currentUser.userId
-    // console.log("Message: ",messages[1].createdAt)
     return (
       <Animated.View
         entering={isMyMessage ? LightSpeedInRight : LightSpeedInLeft}
@@ -143,7 +143,7 @@ function ChatroomScreen({ navigation, route }) {
             ref={flatListRef}
             data={messages}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => parseInt(`${item.createdAt.seconds}${item.createdAt.nanoseconds}`, 10)}
             contentContainerStyle={styles.messageList}
             onContentSizeChange={() =>
               flatListRef.current?.scrollToEnd({ animated: true })

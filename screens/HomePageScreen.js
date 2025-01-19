@@ -98,6 +98,7 @@ const MessageItem = ({ userId, otherId, name, avatar, onPress }) => {
 
 //MAIN FUNCITON
 function HomePageScreen({ navigation }) {
+  // console.log("WE REACHED HOME PAGE 🏠")
   const [isLoading, setIsLoading] = useState(false)
   const [users, setUsers] = useState([])
   const { user } = useContext(UserContext)

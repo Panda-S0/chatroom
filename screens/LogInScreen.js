@@ -20,6 +20,7 @@ const space =
   "                                                                                                    "
 
 function LogInScreen({ navigation }) {
+  // console.log("WE REACHED LOG IN 👇")
   const [isLoading, setIsLoading] = useState(false)
   const [currentUserName, setCurrentUserName] = useState("")
   const [currentPassword, setCurrentPassword] = useState("")
@@ -82,6 +83,7 @@ function LogInScreen({ navigation }) {
           <Text style={styles.texts}>Log In</Text>
           <Inputext
             placeholder="Email"
+            keyboardType="email-address"
             funk={addUserName}
             value={currentUserName}
           />
